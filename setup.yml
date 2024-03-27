@@ -1,0 +1,19 @@
+- name: Install basic shared packages
+  hosts: streamers
+  tasks:
+    - name: Install basic shared packages
+      become: true
+      ansible.builtin.package:
+        name:
+          - "net-tools"
+          - "wget"
+          - "tar"
+          - "vim"
+          - "python3-pip"
+        state: latest
+        update_cache: yes
+    - name: install pip request
+      ansible.builtin.pip:
+        name: "requests"
+        state: "present"
+        version: "2.31.0"

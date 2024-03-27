@@ -1,0 +1,21 @@
+- name: Setup streamer
+  hosts: streamers
+  tasks:
+    - name: Run pear-radio streamer docker container
+      become: true
+      community.docker.docker_container:
+        name: "pear-radio-streamer"
+        image: "rafapaezbas/pear-radio-streamer:0.0.1"
+        state: "started"
+        network_mode: "host"
+        restart_policy: "unless-stopped"
+        cpus: 1
+        memory: "512M"
+        env:
+          STREAM_SEED: "{{ stream_seed }}"
+          STREAM_USERNAME: "{{ stream_username }}"
+          STREAM_DESCRIPTION: "{{ stream_description }}"
+          STREAM_TAGS: "{{ stream_tags }}"
+        volumes:
+          - "{{ volume_folder }}:/music"
+
