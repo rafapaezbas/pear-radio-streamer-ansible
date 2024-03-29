@@ -1,5 +1,5 @@
 - name: Setup streamer
-  hosts: streamers
+  hosts: defaults
   tasks:
     - name: Run pear-radio streamer docker container
       become: true

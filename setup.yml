@@ -1,5 +1,5 @@
 - name: Install basic shared packages
-  hosts: streamers
+  hosts: defaults
   tasks:
     - name: Install basic shared packages
       become: true

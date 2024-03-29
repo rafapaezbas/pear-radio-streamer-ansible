@@ -21,33 +21,36 @@ Follow these steps to deploy the Pear-Radio streamer:
 1. Fill out and uncomment the inventory template (`inventory.ini`). Replace the placeholder values with appropriate configurations:
 
    ```ini
-   [streamers]
-   127.0.0.1
-
-   [streamers:vars]
-   stream_seed=test_seed
-   stream_username=test_username
-   stream_description=test_description
-   stream_tags=#test_tag
-   volume_folder=/root/tracks
+   [defaults]
+   $NAME ansible_host=127.0.0.1
    ```
 
-2. Verify the inventory to ensure it's correctly populated:
+2. Add a configuration file for every node under `./inventory/host_vars/$NAME.yaml`.
+
+   ```yaml
+   stream_seed: test_seed
+   stream_username: test_username
+   stream_description: test_description
+   stream_tags: '#test_tag'
+   volume_folder: /root/tracks
+   ```
+
+3. Verify the inventory to ensure it's correctly populated:
 
    ```bash
    ansible-inventory -i inventory.ini --list
    ```
 
-3. Setup the controlled node using the provided playbook:
+4. Setup the controlled node using the provided playbook:
 
    ```bash
    ansible-playbook -i inventory.ini setup.yml
    ```
 
-4. Run the playbook to set up the streamer container:
+5. Run the playbook to set up the streamer container:
 
    ```bash
    ansible-playbook -i inventory.ini streamer-setup.yml
    ```
 
-5. For more information on the container's functionality, refer to the [pear-radio-streamer-docker repository](https://github.com/rafapaezbas/pear-radio-streamer-docker).
+6. For more information on the container's functionality, refer to the [pear-radio-streamer-docker repository](https://github.com/rafapaezbas/pear-radio-streamer-docker).
