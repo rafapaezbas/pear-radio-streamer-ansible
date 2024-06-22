@@ -5,7 +5,7 @@
       become: true
       community.docker.docker_container:
         name: "pear-radio-streamer"
-        image: "rafapaezbas/pear-radio-streamer:0.0.1"
+        image: "rafapaezbas/pear-radio-streamer:0.0.2"
         state: "started"
         network_mode: "host"
         restart_policy: "unless-stopped"
